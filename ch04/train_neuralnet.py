@@ -60,3 +60,6 @@ plt.ylabel("accuracy")
 plt.ylim(0, 1.0)
 plt.legend(loc='lower right')
 plt.show()
+
+# Overfitting이 일어난다면 test data의 정확도가 떨어질 것이다.
+# 이 순간을 포착하여 학습을 중단(early stopping)하면 overfitting을 예방할 수 있다.
