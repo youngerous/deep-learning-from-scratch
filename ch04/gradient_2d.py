@@ -37,6 +37,8 @@ def numerical_gradient(f, X):
 		numerical_gradient(function_2, np.array([3.0, 4.0]))  →  array([6., 8.])
 		numerical_gradient(function_2, np.array([0.0, 2.0]))  →  array([0., 4.])
 		numerical_gradient(function_2, np.array([3.0, 0.0]))  →  array([6., 0.])
+		
+	수치미분은 단순하고 구현하기 쉽지만, 계산 시간이 오래 걸린다는 단점이 있다.
 	"""
 	if X.ndim == 1:
 		return _numerical_gradient_no_batch(f, X)

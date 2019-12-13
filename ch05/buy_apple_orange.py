@@ -14,21 +14,21 @@ add_apple_orange_layer = AddLayer()
 mul_tax_layer = MulLayer()
 
 # forward
-apple_price = mul_apple_layer.forward(apple, apple_num)  # (1)
-orange_price = mul_orange_layer.forward(orange, orange_num)  # (2)
+apple_price = mul_apple_layer.forward(apple, apple_num)                # (1)
+orange_price = mul_orange_layer.forward(orange, orange_num)            # (2)
 all_price = add_apple_orange_layer.forward(apple_price, orange_price)  # (3)
-price = mul_tax_layer.forward(all_price, tax)  # (4)
+price = mul_tax_layer.forward(all_price, tax)                          # (4)
 
 # backward
 dprice = 1
-dall_price, dtax = mul_tax_layer.backward(dprice)  # (4)
-dapple_price, dorange_price = add_apple_orange_layer.backward(dall_price)  # (3)
-dorange, dorange_num = mul_orange_layer.backward(dorange_price)  # (2)
-dapple, dapple_num = mul_apple_layer.backward(dapple_price)  # (1)
+dall_price, dtax = mul_tax_layer.backward(dprice)                         # (4)
+dapple_price, dorange_price = add_apple_orange_layer.backward(dall_price) # (3)
+dorange, dorange_num = mul_orange_layer.backward(dorange_price)           # (2)
+dapple, dapple_num = mul_apple_layer.backward(dapple_price)               # (1)
 
-print("price:", int(price))
-print("dApple:", dapple)
-print("dApple_num:", int(dapple_num))
-print("dOrange:", dorange)
-print("dOrange_num:", int(dorange_num))
-print("dTax:", dtax)
+print("price:", int(price))             # 715
+print("dApple:", dapple)                # 2.2
+print("dApple_num:", int(dapple_num))   # 110
+print("dOrange:", dorange)              # 3.3
+print("dOrange_num:", int(dorange_num)) # 165
+print("dTax:", dtax)                    # 650
