@@ -3,7 +3,10 @@ import numpy as np
 
 class SGD:
 
-    """확률적 경사 하강법（Stochastic Gradient Descent）"""
+    """
+	확률적 경사 하강법（Stochastic Gradient Descent）
+	: 방향에 따라 성질(기울기)이 달라지는 함수에서는 탐색 경로가 비효율적이다. → 지그재그로 이동
+	"""
 
     def __init__(self, lr=0.01):
         self.lr = lr
@@ -15,15 +18,18 @@ class SGD:
 
 class Momentum:
 
-    """모멘텀 SGD"""
+    """
+	모멘텀 SGD
+	: 기울기 방향으로 힘을 받아 물체가 가속된다는 물리 법칙 차용
+	"""
 
     def __init__(self, lr=0.01, momentum=0.9):
         self.lr = lr
-        self.momentum = momentum
+        self.momentum = momentum # 물리에서의 지면 마찰이나 공기 저항에 해당
         self.v = None
         
     def update(self, params, grads):
-        if self.v is None:
+        if self.v is None: # 초기화 때는 아무 것도 담지 않고, update()가 처음 호출될 때 매개변수와 같은 구조의 데이터를 dict로 저장
             self.v = {}
             for key, val in params.items():                                
                 self.v[key] = np.zeros_like(val)
@@ -58,7 +64,16 @@ class Nesterov:
 
 class AdaGrad:
 
-    """AdaGrad"""
+    """
+	AdaGrad
+	- h 변수는 기울기 값을 제곱하여 계속 더하는 역할.
+	- 매개변수를 갱신할 때 ${ 1 \over h^(1/2) }$ 를 곱해 learning rate를 조정한다.
+	- 매개변수의 원소 중에서 많이 움직인(크게 갱신된) 원소는 learning rate이 낮아진다.
+	
+	>> 그러나 과거의 기울기를 제곱하여 계속 더하다 보면 학습을 진행할수록 update 강도가 약해진다.
+	   지속적으로 학습한다면 어느 순간 update 변화량이 0이 된다.
+	   이 문제를 개선하기 위해 RMSProp이 등장. → 먼 과거의 기울기는 비중을 낮추고 새 기울기 정보를 크게 반영
+	"""
 
     def __init__(self, lr=0.01):
         self.lr = lr
@@ -98,7 +113,10 @@ class RMSprop:
 
 class Adam:
 
-    """Adam (http://arxiv.org/abs/1412.6980v8)"""
+    """
+	Adam (http://arxiv.org/abs/1412.6980v8)
+	: Momentum + AdaGrad
+	"""
 
     def __init__(self, lr=0.001, beta1=0.9, beta2=0.999):
         self.lr = lr
