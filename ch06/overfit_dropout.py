@@ -38,3 +38,10 @@ plt.ylabel("accuracy")
 plt.ylim(0, 1.0)
 plt.legend(loc='lower right')
 plt.show()
+
+"""
+	Dropout
+		- Machine Learning의 Ensemble(개별적으로 학습한 여러 모델의 출력을 평균내어 추론)과 유사
+		- 비슷한 구조(무작위로 뉴런을 삭제한 결과)의 네트워크 N개를 준비하여 각각 학습
+		- Inference 시 뉴런의 출력에 삭제한 비율(예: 0.5)을 곱하여 Ensemble에서 평균내는 것과 유사한 효과
+"""

@@ -113,7 +113,7 @@ class Dropout:
 	def forward(self, x, train_flg=True):
 		if train_flg:
 			self.mask = np.random.rand(*x.shape) > self.dropout_ratio
-			return x * self.mask
+			return x * self.mask # 삭제할 node를 False 처리
 		else:
 			return x * (1.0 - self.dropout_ratio)
 
