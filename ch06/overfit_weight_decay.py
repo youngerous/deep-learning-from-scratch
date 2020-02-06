@@ -66,3 +66,9 @@ plt.ylabel("accuracy")
 plt.ylim(0, 1.0)
 plt.legend(loc='lower right')
 plt.show()
+
+"""
+	Weight decay
+		- 큰 가중치에 대해 상응하는 페널티 부과하여 overfitting 억제
+		- 1/2 * lambda * W^2 (W의 값이 클수록 큰 페널티)
+"""

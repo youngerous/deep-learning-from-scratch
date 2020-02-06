@@ -101,7 +101,7 @@ class MultiLayerNetExtend:
         weight_decay = 0
         for idx in range(1, self.hidden_layer_num + 2):
             W = self.params['W' + str(idx)]
-            weight_decay += 0.5 * self.weight_decay_lambda * np.sum(W**2)
+            weight_decay += 0.5 * self.weight_decay_lambda * np.sum(W**2) # 0.5는 추후 미분의 편의성을 위해
 
         return self.last_layer.forward(y, t) + weight_decay
 
