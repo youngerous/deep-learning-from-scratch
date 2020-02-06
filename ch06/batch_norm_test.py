@@ -85,3 +85,16 @@ for i, w in enumerate(weight_scale_list):
     plt.legend(loc='lower right')
     
 plt.show()
+
+"""
+	Batch Normalization
+		- 초깃값을 적절히 설정하면 각 층의 활성화값이 적당히 퍼지면서 학습이 원활하게 수행됨
+		- 여기서 발전하여 각 layer마다 활성화값을 '강제로' 퍼뜨리는 방법 (평균 0, 분산 1 되도록)
+		- Activation function 앞 또는 뒤에 삽입
+	
+	[장점]
+		1. 학습 속도 개선
+		2. 초깃값에 크게 의존하지 않음 
+		3. Overfitting 억제 (Dropout 필요성 감소)
+		
+"""

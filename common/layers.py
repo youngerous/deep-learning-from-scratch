@@ -173,7 +173,7 @@ class BatchNormalization:
 			self.running_var = self.momentum * self.running_var + (1-self.momentum) * var            
 		else:
 			xc = x - self.running_mean
-			xn = xc / ((np.sqrt(self.running_var + 10e-7)))
+			xn = xc / ((np.sqrt(self.running_var + 10e-7))) # 0으로 나누어지는 것을 방지한다.
 
 		out = self.gamma * xn + self.beta 
 		return out
